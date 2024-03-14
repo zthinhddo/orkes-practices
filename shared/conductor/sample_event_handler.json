@@ -1,0 +1,15 @@
+{
+  "name": "<NAME of the EVENT HANDLER>",
+  "event": "azure:<QUEUE_CONFIG_NAME>:<QUEUE_NAME>",
+  "condition": "true",
+  "actions": [
+    {
+      "action": "<ACTION>",
+      <ACTION INPUT PARAMS>,
+      "expandInlineJSON": false
+    }
+  ],
+  "active": true,
+  "evaluatorType": "graaljs",
+  "createdBy": "boney@orkes.io"
+}
