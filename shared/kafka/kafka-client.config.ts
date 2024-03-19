@@ -4,13 +4,13 @@ export const kafkaClientConfig: KafkaOptions = {
   transport: Transport.KAFKA,
   options: {
     consumer: {
-      groupId: process.env.KAFKA_CONSUMER_GROUP_ID,
+      groupId: 'one-om-flm-dev-grp01',
     },
     client: {
       ssl: true,
-      clientId: process.env.KAFKA_CLIENT_ID,
+      clientId: process.env.KAFKA_CLIENT_ID_CONSUMER,
       brokers: [process.env.KAFKA_BROKER_URI],
-      connectionTimeout: 60000,
+      connectionTimeout: 4500,
       retry: {
         maxRetryTime: 1000,
       },
@@ -20,5 +20,6 @@ export const kafkaClientConfig: KafkaOptions = {
         mechanism: 'plain',
       },
     },
+    postfixId: '',
   },
 };

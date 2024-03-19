@@ -7,19 +7,19 @@ import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 @Module({
   providers: [
     {
-      provide: 'KAFKA_SERVICE',
+      provide: 'KAFKA_PRODUCER',
       useFactory: (configService: ConfigService) => {
         return ClientProxyFactory.create({
           transport: Transport.KAFKA,
           options: {
             consumer: {
-              groupId: configService.get<string>('KAFKA_CONSUMER_GROUP_ID'),
+              groupId: 'one-om-flm-dev-grp01',
             },
             client: {
               ssl: true,
-              clientId: configService.get<string>('KAFKA_CLIENT_ID'),
+              clientId: configService.get<string>('KAFKA_CLIENT_ID_PRODUCER'),
               brokers: [configService.get<string>('KAFKA_BROKER_URI')],
-              connectionTimeout: 60000,
+              connectionTimeout: 4500,
               retry: {
                 maxRetryTime: 1000,
               },
@@ -29,12 +29,14 @@ import { ClientProxyFactory, Transport } from '@nestjs/microservices';
                 mechanism: 'plain',
               },
             },
+            producerOnlyMode: true,
+            postfixId: '',
           },
         });
       },
       inject: [ConfigService],
     },
   ],
-  exports: ['KAFKA_SERVICE'],
+  exports: ['KAFKA_PRODUCER'],
 })
 export class KafkaClientModule {}
