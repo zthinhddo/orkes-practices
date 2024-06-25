@@ -7,6 +7,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice<MicroserviceOptions>(kafkaClientConfig);
   app.startAllMicroservices();
-  app.listen(null);
+  app.listen(3000);
 }
 bootstrap();
