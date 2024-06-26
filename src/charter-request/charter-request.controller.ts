@@ -25,22 +25,28 @@ export class CharterRequestController implements OnModuleInit {
     this.client.emit(
       TOPIC_FLM_IAN_CREATED,
       JSON.stringify({
-        requestId: sendMessageDto.requestId,
-        charterRequestId: sendMessageDto.charterRequestId,
-        failedReason: sendMessageDto.failedReason,
-        isReceived: sendMessageDto.isReceived,
-        workflowId: WORKFLOW_ID,
+        product: "FLM",
+        recipients: [
+          "phi.dinh.tpv@one-line.com",
+          "thinh.doduy.tpv@one-line.com",
+          "thong.luu.tpv@one-line.com"
+        ],
+        options: {
+          "link": "/flm/vessel-library/5cd12102-3c52-407f-998d-69dd5a11a93e"
+        },
+        title: "[TEST][FLM] Sending Notification to FLM",
+        message: "Incoming message from tester Chou Vu"
       }),
     );
     console.log(`sent message to kafka topic - ${TOPIC_FLM_IAN_CREATED}`);
   }
-  
-  @MessagePattern(TOPIC_FLM_IAN_CREATED)
-  async handleReceiveSentMessages(payload: any) {
-    try {
-      console.log('response output: ', payload);
-    } catch (error) {
-      console.log(error.toString());
-    }
-  }
+
+  // @MessagePattern(TOPIC_FLM_IAN_CREATED)
+  // async handleReceiveSentMessages(payload: any) {
+  //   try {
+  //     console.log('response output: ', payload);
+  //   } catch (error) {
+  //     console.log(error.toString());
+  //   }
+  // }
 }
