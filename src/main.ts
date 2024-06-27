@@ -5,7 +5,6 @@ import { kafkaClientConfig } from 'shared/kafka/kafka-client.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.connectMicroservice<MicroserviceOptions>(kafkaClientConfig);
   app.startAllMicroservices();
   app.listen(3000);
 }

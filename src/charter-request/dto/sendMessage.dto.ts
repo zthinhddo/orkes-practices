@@ -1,6 +1,6 @@
 export class SendMessageDto {
-  requestId: string;
-  charterRequestId: string;
-  failedReason: string;
-  isReceived: boolean;
+  recipients: string[];
+  title: string;
+  message: string;
+  options: {};
 }
