@@ -12,9 +12,6 @@ import { ClientProxyFactory, Transport } from '@nestjs/microservices';
         return ClientProxyFactory.create({
           transport: Transport.KAFKA,
           options: {
-            consumer: {
-              groupId: 'one-om-flm-dev-grp01',
-            },
             client: {
               ssl: true,
               clientId: configService.get<string>('KAFKA_CLIENT_ID_PRODUCER'),

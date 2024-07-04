@@ -4,7 +4,7 @@ export const kafkaClientConfig: KafkaOptions = {
   transport: Transport.KAFKA,
   options: {
     consumer: {
-      groupId: 'one-om-flm-dev-grp01',
+      groupId: process.env.CONSUMER_GROUP_ID,
     },
     client: {
       ssl: true,
